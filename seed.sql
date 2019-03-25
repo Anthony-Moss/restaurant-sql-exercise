@@ -15,8 +15,9 @@ values ('100', 'Lovies has good food'),
 ('80',' South City Kitchen review2...');
 
 insert into favorites(user_id, resturant_id, reviews)
-values ('1', '1', '3'),
-('2','1','3'),
+values 
+('1', '1', '2'),
+('2', '1', '3'),
 ('3', '1', '3'),
 ('1', '2', '1');
 
