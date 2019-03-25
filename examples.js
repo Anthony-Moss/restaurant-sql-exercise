@@ -20,6 +20,16 @@ function getReviewsByUserID(theId) {
     });
 }
 
+function getFavoritesByUserID(theId) {
+    return db.any(`select count(reviews) as reviews from favorites where user_id=${theId}`)
+    .then(function(data){
+        console.log(data);
+    })
+    .catch(function(error){
+        //ERROR
+    });
+}
+
 getUserById(1)
     .then(function (aUser) {
         // console.log(aUser);
