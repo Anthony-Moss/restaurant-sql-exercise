@@ -1,15 +1,18 @@
 insert into users(first_name, last_name, email, password)
-values ('john', 'smith', 'john@zpol.com', 'asadsd'),
+values 
+('john', 'smith', 'john@zpol.com', 'asadsd'),
 ('chris', 'aquino', 'chris@gmail.com', 'assdwadsfs'),
 ('John', 'Wick', 'dontkillpuppies@aol.com', 'egejngdjgn');
 
 insert into restaurants(name, address, street, state, city, phone, menu, picture)
-values ('Farm Burger', '3365 Piedmont Rd NE', 'Piedmont Rd', 'Georgia', 'Atlanta', '404-816-0603', 'menu', 'url'),
+values 
+('Farm Burger', '3365 Piedmont Rd NE', 'Piedmont Rd', 'Georgia', 'Atlanta', '404-816-0603', 'menu', 'url'),
 ('South City Kitchen', ' 224 Piedmont Rd', 'Piedmont Rd', 'Geogia', 'Atlanta', '404-123-4567', 'menu', 'url'),
 ('Lovies', '123 Piedmont Rd', 'Piedmont Rd', 'Georgia', 'Atlanta', '404-999-8888', 'menu', 'url');
 
 insert into reviews(score, content)
-values ('100', 'Lovies has good food'),
+values 
+('100', 'Lovies has good food'),
 ('80', 'Farm Burger review...'),
 ('75', 'South City Kitchen review1...'),
 ('80',' South City Kitchen review2...');
