@@ -8,6 +8,7 @@ chai.use(chaiAsPromised).should();
 const Restaurant = require('../models/restaurants');
 const Review = require('../models/reviews');
 
+
 // add a 'describle block' for restaurant tests
 describe('Restaurant model', () => {
     it('should be able to grab an array of restaurants', async () => {
@@ -67,6 +68,33 @@ describe('User model', function () {
         expect(alsoTheUser.email).not.be.to.equal(theOldEmail);
         expect(alsoTheUser.email).to.equal(theNewEmail);
     });
+
+    it('should encrypt the password', async () => {
+        //get a user with id 1
+        const theUser = await User.getById(1);
+        //set their password field to "bacon"
+        theUser.setPassword("bacon");
+        //compare their password to "bacon"
+        expect (theUser.password).not.to.equal('bacon');
+        //this should be false
+    });
+
+    it ('should be able to check for correct passwords', async () => {
+        //get a user with id 1
+        const theUser = await User.getById(1);
+        // set their password field to "bacon"
+        theUser.setPassword("bacon");
+        // save them to the database
+        await theUser.save();
+        //get them back out of the databse
+        const sameUser = await User.getById(1);
+        //ask them if their password is "bacon"
+        const isCorrectPassword = theUser.checkPassword("bacon");
+        expect(isCorrectPassword).to.be.true;
+
+        const isNotCorrectPassword = sameUser.checkPassword('antibacon');
+        expect(isNotCorrectPassword).to.be.false;
+    });
 });
 
 describe('Review model', () => {
@@ -86,7 +114,6 @@ describe('Review model', () => {
             expect(aBunchOfReviews[i]).to.be.an.instanceOf(Review);
         }
     });
-    
 });
 
 describe('Users and Reviews', () => {
