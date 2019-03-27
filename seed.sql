@@ -10,12 +10,12 @@ values
 ('South City Kitchen', ' 224 Piedmont Rd', 'Piedmont Rd', 'Geogia', 'Atlanta', '404-123-4567', 'menu', 'url'),
 ('Lovies', '123 Piedmont Rd', 'Piedmont Rd', 'Georgia', 'Atlanta', '404-999-8888', 'menu', 'url');
 
-insert into reviews(score, content)
+insert into reviews(score, content, restaurant_id, user_id)
 values 
-('100', 'Lovies has good food'),
-('80', 'Farm Burger review...'),
-('75', 'South City Kitchen review1...'),
-('80',' South City Kitchen review2...');
+('100', 'Lovies has good food', 3, 1),
+('80', 'Farm Burger review...', 1, 1),
+('75', 'South City Kitchen review1...', 2, 2),
+('80',' South City Kitchen review2...', 2, 3);
 
 insert into favorites(user_id, restaurant_id, reviews)
 values 
