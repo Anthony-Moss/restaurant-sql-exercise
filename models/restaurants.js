@@ -11,6 +11,20 @@ class Restaurant {
         select * from restaurants
         `);
     }
+
+    
+
+    // static getById(id) {
+    //     return db.one(`select count(content) as review_count from reviews restaurants_id=${id}`)
+    //         .then((userData) => {
+    //             console.log((userData));
+    //             return userInatance
+    //         })
+    //         .catch(() => {
+    //             return null; //signal an invalid value
+    //     })
+    // }
+
 }
 
 //export the class
