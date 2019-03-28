@@ -1,7 +1,6 @@
 {
   "name": "3-25-19",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "db:create": "createdb restaurants-app",
@@ -24,5 +23,17 @@
     "chai-as-promised": "^7.1.1",
     "mocha": "^6.0.2",
     "nodemon": "^1.18.10"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anthony-Moss/restaurant-sql-exercise.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Anthony-Moss/restaurant-sql-exercise/issues"
+  },
+  "homepage": "https://github.com/Anthony-Moss/restaurant-sql-exercise#readme",
+  "description": ""
 }
