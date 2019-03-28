@@ -13,6 +13,10 @@ class User {
         this.email = email;
         this.password = password;
     }
+
+    static getAll() {
+        return db.any(`select * from users`);
+    }
     // "static mean that the function is something the function can do, but the instance cannot
     static getById(id) {
         return db.one(`select * from users where id=${id}`)
