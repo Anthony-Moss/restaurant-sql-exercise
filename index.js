@@ -1,7 +1,7 @@
 const http = require('http');
+const querystring = require('querystring');
 
 const hostname = '127.0.0.1';
-
 const port = 3000;
 
 const Restaurant = require('./models/restaurants');
@@ -49,28 +49,50 @@ const server = http.createServer(async (req, res) => {
     } else if (req.url.startsWith ("/users")) {
         if (method === "GET") {
             if (parts.length === 2) {
-                const allUsers = await Users.getAll();
-                const userJSON = JSON.stringify(allUsers);
+                const allUsers = await User.getAll();
+                const userJSON = JSON.stringify(allUsers);    
                 res.end(userJSON);
             } else if (parts.length === 3) {
+                // the id will be parts[2]
                 const userId = parts[2];
-                const theUser = await Users.getById(userId);
+                // get user by id
+                const theUser = await User.getById(userId);
                 const userJSON = JSON.stringify(theUser);
                 res.end(userJSON);
             } else {
-                res.status = 404;
+                res.statusCode = 404;
                 res.end('Resource not found.');
             }
         } else if (method === "POST") {
-            res.end('{ message: "it sounds like you wanna create"}');
+            // let's read those chunks!
+            let body = '';
+            req.on('data', (chunk) => {
+                // .toString() is built into most objects
+                // it returns a string representation of the object
+                body += chunk.toString();
+            });
+
+            req.on('end', async () => {
+                const parsedBody = querystring.parse(body);
+                console.log('====================');
+                console.log(parsedBody);
+                console.log('^^^^^^ BODY OF FORM ^^^^^^^^');
+                const newUserId = await User.add(parsedBody);
+                res.end(`{ "id": ${newUserId}}`);
+            });
+
+
         } else if (method === "PUT") {
-            res.end('{ message: "you wanna update, dont you"}');
+            res.end('{ "message": "you wanna update, doncha?"}');
         } else if (method === "DELETE") {
-            res.end('{ message: "rm the user"}');
+            res.end('{ "message": "rm the user"}');
         }
+
     } else {
-        res.end(`{message: "Thank you for yout patronage. Plz send bitcoin."}`);
-    }   
+        res.end(`{
+            message: "Thank you for your patronage. Please send bitcoin."
+        }`);
+    }
 });
 
 server.listen(port, hostname, () => {
