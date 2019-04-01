@@ -19,10 +19,10 @@ values
 
 insert into favorites(user_id, restaurant_id, reviews)
 values 
-('1', '1', '1'),
-('2', '1', '1'),
-('3', '1', '1'),
-('1', '2', '1');
+(1, 1, '1'),
+(2, 1, '1'),
+(3, 1, '1'),
+(1, 2, '1');
 
 -- create table users (
 --     id serial primary key,
