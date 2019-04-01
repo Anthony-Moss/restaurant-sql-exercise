@@ -1,5 +1,6 @@
 const express = require('express'); // Bring in express library
 const app = express(); // Create a new express app
+app.use(express.urlencoded({extended: true}));
 
 const http = require('http');
 const querystring = require('querystring');
@@ -25,13 +26,27 @@ app.get('/users', async (req, res) => {
     const allUsers = await User.getAll();  
     res.json(allUsers);
 });
-app.get('/users/:id', async (req, res) =>{
+app.get('/users/:id', async (req, res) => {
     // how to grab a piece out of req.params (or any object):
     // const id = req.params.id;
     // this is known as "destructuring"
     const {id} = req.params;
     const theUser =  await User.getById(req.params.id);
     res.json(theUser);
+});
+app.post('/users', async (req, res) => {
+    const newUser = await User.add(req.body);
+    res.json(newUser);
+});
+
+app.put('/users/:id', async (req, res) => {
+    const updatedInfo = await User.update(req.params.id, req.body);
+    res.json(updatedInfo);    
+});
+
+app.delete('/users/:id', async (req, res) => {
+    let userInfo = await User.deleteById(req.params.id);
+    res.json(userInfo);
 })
 
 app.listen(port, () => {
